@@ -15,7 +15,6 @@ rl.on('line', (line) => {
   lineNr++;
   lines.push(line);
   if (lineNr == 100) {
-      console.log(lines);
       ADVENT_OF_CODE.calculateMass(lines);
   }
 });
@@ -23,8 +22,20 @@ rl.on('line', (line) => {
 
 ADVENT_OF_CODE.calculateMass = (input) => {
 
-    let x1 = 0;
-    let totalFuel = lines.map(m => Math.floor(m / 3) - 2).reduce((x1, x2) => x1 + x2);
+    function sumFuel(amount, accumulator) {
+        console.log(`amount: ${amount}, accumulator: ${accumulator}`);
+        let result = Math.floor(amount / 3) - 2
+        if (result <= 0) {
+            console.log(`return result: ${result} & accumulator: ${accumulator}`)
+            return accumulator;
+        } else {
+            return sumFuel(result, accumulator + result);
+        }
+    }
+
+    const x1 = 0;
+    let totalFuel = lines.map(function(x) {return sumFuel(x, 0)}).reduce((x1, x2) => x1 + x2);
+
     console.log(totalFuel);
 
 }
