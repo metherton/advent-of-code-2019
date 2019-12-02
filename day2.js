@@ -41,8 +41,8 @@ ADVENT_OF_CODE.calculateInts = (input) => {
     }
     input[1] = '12';
     input[2] = '2';
- //   console.log(input);
+
     calcInts(0);
     console.log(`Answer is: ${input[0]}`)
- //   console.log(input);
+
 }
